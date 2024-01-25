@@ -1,8 +1,8 @@
 const html = document.querySelector("html");
 html.style.cssText = "margin: 0; padding: 0; box-sizing: border-box;";
 const head = document.querySelector("head");
-head.innerHTML += 
-`
+head.innerHTML +=
+    `
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Holtwood+One+SC&family=VT323&display=swap" rel="stylesheet">
@@ -69,9 +69,9 @@ button.addEventListener("click", onClick);
 gameContainer.append(gameRow);
 
 let centerLogo = document.createElement("div");
-centerLogo.style.cssText = "position: absolute; top: 50%; transform: translateY(-50%) translateX(-50%); left: 50%; width: 75px; height: 75px; background-color: black; border-radius: 50%; color: white; font-size:20px; display: flex; align-items: center; justify-content: center; font-family: 'Holtwood One SC', serif;";
+centerLogo.style.cssText = "position: absolute; top: 50%; transform: translateY(-50%) translateX(-50%); left: 50%; width: 75px; height: 75px; background-color: black; border-radius: 50%; color: white; font-size:35px; display: flex; align-items: center; justify-content: center; font-family: 'Holtwood One SC', serif;";
 centerLogo.id = "centerLogo";
-centerLogo.innerText = "MLH";
+centerLogo.innerText = "S";
 gameContainer.append(centerLogo);
 
 container.append(gameContainer);
@@ -114,7 +114,12 @@ function checkAnswer(currentLevel) {
         resetGame();
         playSound("gameOver");
         levelTitle.text("Game Over! Press any key to restart!");
-    }else if(gameColorPattern.length == currentLevel + 1){
+        let body = $("body");
+        body.css("background-color", "red");
+        setTimeout(function () {
+            body.css("background-color", "#555");
+        }, 300);
+    } else if (gameColorPattern.length == currentLevel + 1) {
         level += 1;
         levelTitle.text("Level: " + level);
         setTimeout(nextLevel, 1000);
@@ -129,10 +134,10 @@ function playSound(name) {
 function buttonAnimate(currentColour) {
     let button = $("#" + currentColour);
     button.fadeOut(100).fadeIn(100);
-    
-    button.css({"box-shadow": "0 0 20px white", "background-color": "grey"});
+
+    button.css({ "box-shadow": "0 0 20px white", "background-color": "grey" });
     setTimeout(function () {
-        button.css({"box-shadow": "none", "background-color": currentColour});
+        button.css({ "box-shadow": "none", "background-color": currentColour });
     }, 100);
 }
 
